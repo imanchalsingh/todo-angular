@@ -1,0 +1,104 @@
+<div
+  class="todo-page"
+  style="
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  "
+>
+  <h1
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+    "
+  >
+    ToDo List
+  </h1>
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      background-color: rgba(212, 212, 212, 0.473);
+      width: 400px;
+      height: 350px;
+      padding: 20px;
+      border-radius: 10px;
+    "
+  >
+    <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)">
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        "
+      >
+        <input
+          style="
+            width: 350px;
+            border-radius: 10px;
+            border: none;
+            height: 30px;
+            outline: none;
+            padding-left: 10px;
+          "
+          type="text"
+          id="task"
+          ngModel
+          name="task"
+          required
+        />
+
+        <button
+          class="btn btn-primary btn-sm"
+          style="border-radius: 10px; margin-left: -80%; margin-top: 20px"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+      <hr />
+    </form>
+    <div style="overflow-y: auto; overflow-x: hidden; scrollbar-width: none">
+      <div *ngFor="let t of taskArray; let i = index">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(49, 49, 49, 0.541);
+            border-radius: 10px;
+            margin-top: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            text-align: center;
+          "
+        >
+          <p
+            style="
+              font-weight: bold;
+              color: #ffffff;
+              text-align: center;
+              padding-top: 10px;
+            "
+          >
+            {{ t.taskName }}
+          </p>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            (click)="deleteTask(i)"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
